@@ -10,4 +10,4 @@ The software, and system itself, are connected to a cloud in which users can kee
 
 # Disclaimer
 
-It's a work in progress, since knowledge and vision updates were made from the last time that I dedicate myself into its production.
+It's a work in progress since knowledge and envision updates were made from the last time that I dedicate myself into this project.
