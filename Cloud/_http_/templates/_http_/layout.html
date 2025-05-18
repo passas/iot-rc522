@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% block script %}{% endblock %}
+</head>
+<body>
+    <a href="{% url '_http_:index' %}">Index</a>
+    <a href="{% url '_http_:login' %}">Login</a>
+    <a href="{% url '_http_:logout' %}">Logout</a>
+    <a href="{% url '_http_:register' %}">Register</a>
+    <p></p>
+    <a href="{% url '_http_:profile' %}">Profile</a>
+    <a href="{% url '_http_:train' %}">Train</a>
+    <p></p>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

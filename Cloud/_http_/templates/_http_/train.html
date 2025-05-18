@@ -1,0 +1,86 @@
+{% extends '_http_/layout.html' %}
+
+{% block title %}Train{% endblock %}
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+{% endblock %}
+
+{% block body %}
+{{ message }}<p></p>
+Is authenticated? {{ user.is_authenticated }}<p></p>
+{{ user.role }}<p></p>
+{% if no_train %}
+{% for t in trains %}
+Train: <a href="{% url '_http_:train' %}?train={{ t.id }} ">{{ t }}</a>
+{% empty %}
+<i>No trains are currently monotorized.</i>
+{% endfor %}
+{% else %}
+{{ temperatures|json_script:"temperatures" }}
+{{ humidities|json_script:"humidities" }}
+{{ timestamps|json_script:"timestamps" }}
+<canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+<canvas id="myChart2" style="width:100%;max-width:700px"></canvas>
+
+<script>
+  function autoRefresh()
+  {
+    window.location = window.location.href;
+  }
+  setInterval(autoRefresh, 10000); //10seconds
+  
+  const temperatures = JSON.parse(document.getElementById('temperatures').textContent);
+  const humidities = JSON.parse(document.getElementById('humidities').textContent);
+  const timestamps = JSON.parse(document.getElementById('timestamps').textContent);
+  
+  new Chart("myChart", {
+    type: "line",
+    data: {
+      labels: timestamps,
+      datasets: [{
+      label: 'Temperature',
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: temperatures
+      }]
+    },
+    options: {
+      legend: {display: true},
+      scales: {
+        yAxes: [{ticks: {min: 10, max:40}}],
+      },
+      title: {
+        display: true,
+        text: "Zone 1"
+      }
+    }
+  });
+  new Chart("myChart2", {
+    type: "line",
+    data: {
+      labels: timestamps,
+      datasets: [{
+      label: 'Humidity',
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(238, 130, 238,1.0)",
+        borderColor: "rgba(238, 130, 238,0.1)",
+        data: humidities
+      }]
+    },
+    options: {
+      legend: {display: true},
+      scales: {
+        yAxes: [{ticks: {min: 30, max:70}}],
+      },
+    }
+  });
+  
+  </script>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends '_http_/layout.html' %}
+
+{% block title %}Index{% endblock %}
+
+{% block body %}
+{{ message }}<p></p>
+Is authenticated? {{ user.is_authenticated }}<p></p>
+{{ user.role }}
+{% endblock %}

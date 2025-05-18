@@ -1,0 +1,36 @@
+{% extends '_http_/layout.html' %}
+{% load pretty_protocol %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+Profile<p></p>
+{{ message }}<p></p>
+<h2>Info</h2>
+<strong>Email:</strong> {{ request.user.username }}<p></p>
+<strong>First name:</strong> {{ request.user.first_name }}<p></p>
+<strong>Last name:</strong> {{ request.user.last_name }}<p></p>
+<h2>Contract</h2>
+<strong>Contract:</strong> {{ request.user.contract.type }}<p></p>
+<strong>From:</strong> {{ request.user.contract.zone1 }}<p></p>
+<strong>To:</strong> {{ request.user.contract.zone2 }}<p></p>
+<strong>Expiration date:</strong> {{ request.user.contract.expire }}<p></p>
+<strong>Price:</strong> {{ request.user.contract.price }}<p></p>
+<strong>Payed until:</strong> {{ request.user.contract.until }}<p></p>
+<form>
+    {% csrf_token %}
+    <input type="date" name="renewel">
+    <input type="button" value="Renew contract"></button>
+</form>
+
+<h2>Ticket</h2>
+<strong>Ticket:</strong> {{ request.user.getTicket.type }}<p></p>
+<strong>From:</strong> {{ request.user.getTicket.zone1 }}<p></p>
+<strong>To:</strong> {{ request.user.getTicket.zone2 }}<p></p>
+<strong>Amount:</strong> {{ request.user.getTicket.amount }}<p></p>
+<form>
+    {% csrf_token %}
+    <input type="number" min="1" max="10"></input>
+    <input type="button" value="Add tickets"></button>
+</form>
+{% endblock %}

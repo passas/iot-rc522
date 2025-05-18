@@ -1,0 +1,8 @@
+{% extends '_http_/layout.html' %}
+
+{% block title %}403{% endblock %}
+
+{% block body %}
+{{ message }}<p></p>
+Is authenticated? {{ user.is_authenticated }}
+{% endblock %}

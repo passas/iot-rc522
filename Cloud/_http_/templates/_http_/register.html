@@ -1,0 +1,16 @@
+{% extends '_http_/layout.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+Register<p></p>
+{{ message }}<p></p>
+<form action="{% url '_http_:register' %}" method="post">
+    {% csrf_token %}
+    <label>email</label>
+    <input type="text" name="email">
+    <label>password</label>
+    <input type="password" name="password">
+    <button type="submit" name="register">Register</button>
+</form>
+{% endblock %}
