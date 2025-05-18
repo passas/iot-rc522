@@ -1,6 +1,6 @@
 # [IoT] RC522
 
-This was a project on the Network Engineering field where we use radio frequency cards in order to read and write information to it, and from it.
+This is a project from the Network Engineering field where we use radio frequency cards in order to read and write information to it, and from it.
 
 Exploring the ROM capacity of radio frequency systems.
 
