@@ -1,4 +1,4 @@
-# [IoT] RC522 iot-rc522
+# [IoT] RC522
 
 This was a project on the field of Network Engineering, where we use radio frequency cards in order to read and write information to it, and from it.
 
